@@ -9,6 +9,7 @@
  printf("4. Kontrollera om ett tal ar ett primtal\n");
  printf("5. FizzBuzz for ett intervall\n");
  printf("6. Enkel rakning (+, -, *, /)\n");
+ printf("12. Byt plats pa tva tal\n");
  printf("0. Avsluta\n");
  printf("Val: ");
  }
@@ -65,10 +66,25 @@
  double a, b;
  char operatortecken;
  printf("Ange uttryck, t.ex. \"4 + 2\": ");
- scanf(”%lf %c %lf”, &a, &operatortecken, &b);
+ scanf("%lf %c %lf", &a, &operatortecken, &b);
  printf("Resultat: %.2f\n", berakna(a, b, operatortecken));
  break;
  }
+ case 12:
+{
+    double a, b;
+
+    printf("Ange tva tal, t.ex. \"3 7\": ");
+    scanf("%lf %lf", &a, &b);
+
+    printf("Fore: a = %.2f, b = %.2f\n", a, b);
+
+    byt_plats(&a, &b);
+
+    printf("Efter: a = %.2f, b = %.2f\n", a, b);
+
+    break;
+}
  case 0:
  printf("Avslutar.\n");
  break;
