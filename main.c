@@ -9,6 +9,7 @@
  printf("4. Kontrollera om ett tal ar ett primtal\n");
  printf("5. FizzBuzz for ett intervall\n");
  printf("6. Enkel rakning (+, -, *, /)\n");
+ printf("7. Konvertera flera temperaturer (Celsius -> Fahrenheit)\n");
  printf("12. Byt plats pa tva tal\n");
  printf("0. Avsluta\n");
  printf("Val: ");
@@ -84,6 +85,27 @@
     printf("Efter: a = %.2f, b = %.2f\n", a, b);
 
     break;
+}
+case 7: 
+{
+ double matningar[20];
+ int antal;
+ printf("Hur manga matningar vill du mata in (max 20)? ");
+ scanf("%d", &antal);
+ for (int i = 0; i < antal; i++) {
+ printf("Matning %d (Celsius): ", i + 1);
+ scanf("%lf", &matningar[i]);
+}
+
+ konvertera_serie(matningar, antal);
+
+ printf("I Fahrenheit: ");
+ for (int i = 0; i < antal; i++) {
+ printf("%.2f ", matningar[i]);
+ }
+ printf("\n");
+ break;
+ 
 }
  case 0:
  printf("Avslutar.\n");
