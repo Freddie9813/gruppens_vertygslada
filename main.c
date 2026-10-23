@@ -17,8 +17,6 @@
 
  int main(void) {
  int val;
- double *matlogg = NULL;
- int matlogg_antal = 0;
 
  do {
  skriv_meny();
@@ -73,7 +71,21 @@
  printf("Resultat: %.2f\n", berakna(a, b, operatortecken));
  break;
  }
+ case 12:
+{
+    double a, b;
 
+    printf("Ange tva tal, t.ex. \"3 7\": ");
+    scanf("%lf %lf", &a, &b);
+
+    printf("Fore: a = %.2f, b = %.2f\n", a, b);
+
+    byt_plats(&a, &b);
+
+    printf("Efter: a = %.2f, b = %.2f\n", a, b);
+
+    break;
+}
 case 7: 
 {
  double matningar[20];
@@ -95,28 +107,7 @@ case 7:
  break;
  
 }
-
- case 12:
-{
-    double a, b;
-
-    printf("Ange tva tal, t.ex. \"3 7\": ");
-    scanf("%lf %lf", &a, &b);
-
-    printf("Fore: a = %.2f, b = %.2f\n", a, b);
-
-    byt_plats(&a, &b);
-
-    printf("Efter: a = %.2f, b = %.2f\n", a, b);
-
-    break;
-}
  case 0:
- if (matlogg != NULL) {
-     frigor_matlogg(matlogg);
-     matlogg = NULL;
-     matlogg_antal = 0;
- }
  printf("Avslutar.\n");
  break;
  default:
