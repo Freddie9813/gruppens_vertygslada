@@ -9,5 +9,7 @@ void skriv_fizzbuzz(int fran, int till);
 double berakna(double a, double b, char operatortecken);
 void byt_plats(double *a, double *b);
 void konvertera_serie(double *matningar, int antal);
+void storst_rektangel(double bredder[], double hojder[], int antal,
+double *storsta_area_ut, int *index_ut);
 
 #endif
