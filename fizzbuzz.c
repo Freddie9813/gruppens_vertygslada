@@ -1,8 +1,9 @@
 
 #include <stdio.h>
 
-int main(void) {
-    for (int tal = 1; tal <= 100; tal++) {
+void skriv_fizzbuzz(int fran, int till)
+{
+    for (int tal = fran; tal <= till; tal++) {
         if (tal % 3 == 0 && tal % 5 == 0) {
             printf("FizzBuzz\n");
         } else if (tal % 3 == 0) {
@@ -14,5 +15,4 @@ int main(void) {
         }
     }
 
-    return 0;
 }
