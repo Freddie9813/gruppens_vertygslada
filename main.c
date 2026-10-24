@@ -167,7 +167,7 @@ int main(void)
             scanf("%d", &antal);
             for (int i = 0; i < antal; i++)
             {
-                prinf("tal %d: ", i + 1);
+                printf("tal %d: ", i + 1);
                 scanf("%d", &tal[i]);
             }
             printf("Antal primtal: %d\n", raknar_primtal_i_array(tal, antal));
