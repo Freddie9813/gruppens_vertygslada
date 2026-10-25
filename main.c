@@ -2,6 +2,7 @@
 #include "verktyg.h"
 
 static void skriv_meny(void)
+
 {
     printf("\n=== Gruppens verktygslada ===\n");
     printf("1. Temperaturkonvertering (Celsius -> Fahrenheit)\n");
@@ -14,6 +15,7 @@ static void skriv_meny(void)
     printf("8. Storst rektangel i en lista\n");
     printf("9. Flera multiplikationstabeller\n");
     printf("10. Rakna primtal i en lista\n");
+    printf("11. FizzBuzz-sammanfattning\n");
     printf("12. Byt plats pa tva tal\n");
     printf("0. Avsluta\n");
     printf("Val: ");
@@ -87,21 +89,6 @@ int main(void)
             printf("Resultat: %.2f\n", berakna(a, b, operatortecken));
             break;
         }
-        case 12:
-        {
-            double a, b;
-
-            printf("Ange tva tal, t.ex. \"3 7\": ");
-            scanf("%lf %lf", &a, &b);
-
-            printf("Fore: a = %.2f, b = %.2f\n", a, b);
-
-            byt_plats(&a, &b);
-
-            printf("Efter: a = %.2f, b = %.2f\n", a, b);
-
-            break;
-        }
         case 7:
         {
             double matningar[20];
@@ -172,6 +159,33 @@ int main(void)
             }
             printf("Antal primtal: %d\n", raknar_primtal_i_array(tal, antal));
             break;
+        }
+        case 11: 
+        {
+            int fran, till;
+            char sammanfattning[100];
+
+            printf("Ange start och slut (t.ex. 1 20): ");
+            scanf("%d %d", &fran, &till);
+
+            fizzbuzz_sammanfattning(fran, till, sammanfattning);
+            printf("%s\n", sammanfattning);
+            break;
+        }
+        case 12:
+        {
+            double a, b;
+
+            printf("Ange tva tal, t.ex. \"3 7\": ");
+            scanf("%lf %lf", &a, &b);
+
+            printf("Fore: a = %.2f, b = %.2f\n", a, b);
+
+            byt_plats(&a, &b);
+
+            printf("Efter: a = %.2f, b = %.2f\n", a, b);
+            break;
+
         }
         case 0:
             printf("Avslutar.\n");

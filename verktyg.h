@@ -14,4 +14,6 @@ void konvertera_serie(double *matningar, int antal);
 void storst_rektangel(double bredder[], double hojder[], int antal,
                       double *storsta_area_ut, int *index_ut);
 
+void fizzbuzz_sammanfattning(int fran, int till, char *sammanfattning);
+
 #endif
