@@ -1,128 +1,199 @@
 #include <stdio.h>
- #include "verktyg.h"
+#include "verktyg.h"
 
- static void skriv_meny(void) {
- printf("\n=== Gruppens verktygslada ===\n");
- printf("1. Temperaturkonvertering (Celsius -> Fahrenheit)\n");
- printf("2. Rektangelns area\n");
- printf("3. Multiplikationstabell\n");
- printf("4. Kontrollera om ett tal ar ett primtal\n");
- printf("5. FizzBuzz for ett intervall\n");
- printf("6. Enkel rakning (+, -, *, /)\n");
- printf("7. Konvertera flera temperaturer (Celsius -> Fahrenheit)\n");
- printf("12. Byt plats pa tva tal\n");
- printf("0. Avsluta\n");
- printf("Val: ");
- }
+static void skriv_meny(void)
 
- int main(void) {
- int val;
- double *matlogg = NULL;
- int matlogg_antal = 0;
-
- do {
- skriv_meny();
- scanf("%d", &val);
-
- switch (val) {
- case 1: {
- double celsius;
- printf("Ange temperatur i Celsius: ");
- scanf("%lf", &celsius);
- printf("%.2f C = %.2f F\n",
- celsius, celsius_till_fahrenheit(celsius));
- break;
- }
- case 2: {
- double bredd, hojd;
- printf("Ange bredd och hojd: ");
- scanf("%lf %lf", &bredd, &hojd);
- printf("Arean ar %.2f\n", rektangelarea(bredd, hojd));
- break;
- }
- case 3: {
- int tal;
- printf("Ange ett tal: ");
- scanf("%d", &tal);
- skriv_multiplikationstabell(tal);
- break;
- }
- case 4: {
- int tal;
- printf("Ange ett heltal: ");
- scanf("%d", &tal);
- if (ar_primtal(tal)) {
- printf("%d ar ett primtal.\n", tal);
- } else {
- printf("%d ar inte ett primtal.\n", tal);
- }
- break;
- }
- case 5: {
- int fran, till;
- printf("Ange start och slut (t.ex. 1 20): ");
- scanf("%d %d", &fran, &till);
- skriv_fizzbuzz(fran, till);
- break;
- }
- case 6: {
- double a, b;
- char operatortecken;
- printf("Ange uttryck, t.ex. \"4 + 2\": ");
- scanf("%lf %c %lf", &a, &operatortecken, &b);
- printf("Resultat: %.2f\n", berakna(a, b, operatortecken));
- break;
- }
-
-case 7: 
 {
- double matningar[20];
- int antal;
- printf("Hur manga matningar vill du mata in (max 20)? ");
- scanf("%d", &antal);
- for (int i = 0; i < antal; i++) {
- printf("Matning %d (Celsius): ", i + 1);
- scanf("%lf", &matningar[i]);
+    printf("\n=== Gruppens verktygslada ===\n");
+    printf("1. Temperaturkonvertering (Celsius -> Fahrenheit)\n");
+    printf("2. Rektangelns area\n");
+    printf("3. Multiplikationstabell\n");
+    printf("4. Kontrollera om ett tal ar ett primtal\n");
+    printf("5. FizzBuzz for ett intervall\n");
+    printf("6. Enkel rakning (+, -, *, /)\n");
+    printf("7. Konvertera flera temperaturer (Celsius -> Fahrenheit)\n");
+    printf("8. Storst rektangel i en lista\n");
+    printf("9. Flera multiplikationstabeller\n");
+    printf("10. Rakna primtal i en lista\n");
+    printf("11. FizzBuzz-sammanfattning\n");
+    printf("12. Byt plats pa tva tal\n");
+    printf("0. Avsluta\n");
+    printf("Val: ");
 }
 
- konvertera_serie(matningar, antal);
-
- printf("I Fahrenheit: ");
- for (int i = 0; i < antal; i++) {
- printf("%.2f ", matningar[i]);
- }
- printf("\n");
- break;
- 
-}
-
- case 12:
+int main(void)
 {
-    double a, b;
+    int val;
 
-    printf("Ange tva tal, t.ex. \"3 7\": ");
-    scanf("%lf %lf", &a, &b);
+    do
+    {
+        skriv_meny();
+        scanf("%d", &val);
 
-    printf("Fore: a = %.2f, b = %.2f\n", a, b);
+        switch (val)
+        {
+        case 1:
+        {
+            double celsius;
+            printf("Ange temperatur i Celsius: ");
+            scanf("%lf", &celsius);
+            printf("%.2f C = %.2f F\n",
+                   celsius, celsius_till_fahrenheit(celsius));
+            break;
+        }
+        case 2:
+        {
+            double bredd, hojd;
+            printf("Ange bredd och hojd: ");
+            scanf("%lf %lf", &bredd, &hojd);
+            printf("Arean ar %.2f\n", rektangelarea(bredd, hojd));
+            break;
+        }
+        case 3:
+        {
+            int tal;
+            printf("Ange ett tal: ");
+            scanf("%d", &tal);
+            skriv_multiplikationstabell(tal);
+            break;
+        }
+        case 4:
+        {
+            int tal;
+            printf("Ange ett heltal: ");
+            scanf("%d", &tal);
+            if (ar_primtal(tal))
+            {
+                printf("%d ar ett primtal.\n", tal);
+            }
+            else
+            {
+                printf("%d ar inte ett primtal.\n", tal);
+            }
+            break;
+        }
+        case 5:
+        {
+            int fran, till;
+            printf("Ange start och slut (t.ex. 1 20): ");
+            scanf("%d %d", &fran, &till);
+            skriv_fizzbuzz(fran, till);
+            break;
+        }
+        case 6:
+        {
+            double a, b;
+            char operatortecken;
+            printf("Ange uttryck, t.ex. \"4 + 2\": ");
+            scanf("%lf %c %lf", &a, &operatortecken, &b);
+            printf("Resultat: %.2f\n", berakna(a, b, operatortecken));
+            break;
+        }
+        case 7:
+        {
+            double matningar[20];
+            int antal;
+            printf("Hur manga matningar vill du mata in (max 20)? ");
+            scanf("%d", &antal);
+            for (int i = 0; i < antal; i++)
+            {
+                printf("Matning %d (Celsius): ", i + 1);
+                scanf("%lf", &matningar[i]);
+            }
 
-    byt_plats(&a, &b);
+            konvertera_serie(matningar, antal);
 
-    printf("Efter: a = %.2f, b = %.2f\n", a, b);
+            printf("I Fahrenheit: ");
+            for (int i = 0; i < antal; i++)
+            {
+                printf("%.2f ", matningar[i]);
+            }
+            printf("\n");
+            break;
+        }
+        case 8:
+        {
+            double bredder[20], hojder[20];
+            int antal;
+            double storsta_area;
+            int index;
 
-    break;
+            printf("Hur manga rektanglar vill du jamfora (max 20)? ");
+            scanf("%d", &antal);
+            for (int i = 0; i < antal; i++)
+            {
+                printf("Rektangel %d, bredd och hojd: ", i + 1);
+                scanf("%lf %lf", &bredder[i], &hojder[i]);
+            }
+
+            storst_rektangel(bredder, hojder, antal, &storsta_area, &index);
+
+            printf("Storst area ar %.2f, rektangel nummer %d\n",
+                   storsta_area, index + 1);
+            break;
+        }
+        case 9:
+        {
+            int tal[20];
+            int antal;
+            printf("Hur manga tabeller vill du skriva ut (max antal 20)? ");
+            scanf("%d", &antal);
+            for (int i = 0; i < antal; i++)
+            {
+                printf("Tal %d: ", i + 1);
+                scanf("%d", &tal[i]);
+            }
+            skriv_flera_tabeller(tal, antal);
+            break;
+        }
+        case 10:
+        {
+            int tal[20];
+            int antal;
+            printf("Hur manga tal vill du kontrollera (max antal 20)? ");
+            scanf("%d", &antal);
+            for (int i = 0; i < antal; i++)
+            {
+                printf("tal %d: ", i + 1);
+                scanf("%d", &tal[i]);
+            }
+            printf("Antal primtal: %d\n", raknar_primtal_i_array(tal, antal));
+            break;
+        }
+        case 11: 
+        {
+            int fran, till;
+            char sammanfattning[100];
+
+            printf("Ange start och slut (t.ex. 1 20): ");
+            scanf("%d %d", &fran, &till);
+
+            fizzbuzz_sammanfattning(fran, till, sammanfattning);
+            printf("%s\n", sammanfattning);
+            break;
+        }
+        case 12:
+        {
+            double a, b;
+
+            printf("Ange tva tal, t.ex. \"3 7\": ");
+            scanf("%lf %lf", &a, &b);
+
+            printf("Fore: a = %.2f, b = %.2f\n", a, b);
+
+            byt_plats(&a, &b);
+
+            printf("Efter: a = %.2f, b = %.2f\n", a, b);
+            break;
+
+        }
+        case 0:
+            printf("Avslutar.\n");
+            break;
+        default:
+            printf("Ogiltigt val, forsok igen.\n");
+        }
+    } while (val != 0);
+
+    return 0;
 }
- case 0:
- if (matlogg != NULL) {
-     frigor_matlogg(matlogg);
-     matlogg = NULL;
-     matlogg_antal = 0;
- }
- printf("Avslutar.\n");
- break;
- default:
- printf("Ogiltigt val, forsok igen.\n");
- }
- } while (val != 0);
-
- return 0;
- }

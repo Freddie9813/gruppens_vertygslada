@@ -8,3 +8,11 @@ void skriv_multiplikationstabell(int tal)
         printf("%d * %d = %d\n", tal, i, tal * i);
     }
 }
+void skriv_flera_tabeller(int tal[], int antal)
+{
+    for (int i = 0; i < antal; i++)
+    {
+        skriv_multiplikationstabell(tal[i]);
+        printf("\n");
+    }
+}
