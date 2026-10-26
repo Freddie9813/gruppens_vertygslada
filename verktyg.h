@@ -15,5 +15,5 @@ void storst_rektangel(double bredder[], double hojder[], int antal,
                       double *storsta_area_ut, int *index_ut);
 
 void fizzbuzz_sammanfattning(int fran, int till, char *sammanfattning);
-
+double *ta_bort_senaste_matning(double *logg, int *antal);
 #endif
