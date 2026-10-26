@@ -9,5 +9,7 @@ void skriv_fizzbuzz(int fran, int till);
 double berakna(double a, double b, char operatortecken);
 void byt_plats(double *a, double *b);
 void konvertera_serie(double *matningar, int antal);
+double *lagg_till_matning(double *logg, int *antal, double varde);
+void berakna_loggstatistik(double *logg, int antal, double *min_ut, double *max_ut, double *medel_ut);
 
 #endif
