@@ -17,6 +17,7 @@ static void skriv_meny(void)
     printf("10. Rakna primtal i en lista\n");
     printf("11. FizzBuzz-sammanfattning\n");
     printf("12. Byt plats pa tva tal\n");
+    printf("14. Ta bort senaste matningen\n");
     printf("0. Avsluta\n");
     printf("Val: ");
 }
@@ -188,6 +189,12 @@ int main(void)
             printf("Efter: a = %.2f, b = %.2f\n", a, b);
             break;
 
+        }
+        case 14:
+        {
+            matlogg = ta_bort_senaste_matning(matlogg, &matlogg_antal);
+            printf("Matloggen innehaller nu %d matning(ar).\n", matlogg_antal);
+            break;
         }
         case 0:
             if (matlogg != NULL)
