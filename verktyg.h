@@ -11,7 +11,6 @@ void byt_plats(double *a, double *b);
 void skriv_flera_tabeller(int tal[], int antal);
 int raknar_primtal_i_array(int tal[], int antal);
 void konvertera_serie(double *matningar, int antal);
-double *lagg_till_matning(double *logg, int *antal, double varde);
 void berakna_loggstatistik(double *logg, int antal, double *min_ut, double *max_ut, double *medel_ut);
 
 void storst_rektangel(double bredder[], double hojder[], int antal,
