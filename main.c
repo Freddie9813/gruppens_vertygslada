@@ -18,6 +18,7 @@ static void skriv_meny(void)
     printf("11. FizzBuzz-sammanfattning\n");
     printf("12. Byt plats pa tva tal\n");
     printf("14. Ta bort senaste matningen\n");
+    printf("16. Statistik for matloggen (min/max/medel)\n");
     printf("0. Avsluta\n");
     printf("Val: ");
 }
@@ -194,6 +195,13 @@ int main(void)
         {
             matlogg = ta_bort_senaste_matning(matlogg, &matlogg_antal);
             printf("Matloggen innehaller nu %d matning(ar).\n", matlogg_antal);
+            break;
+        }
+        case 16:
+        {
+            double min, max, medel;
+            berakna_loggstatistik(matlogg, matlogg_antal, &min, &max, &medel);
+            printf("Min: %.2f, Max: %.2f, Medel: %.2f\n", min, max, medel);
             break;
         }
         case 0:
