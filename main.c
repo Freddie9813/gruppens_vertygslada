@@ -224,8 +224,8 @@ int main(void)
         }
         case 18:
             frigor_matlogg(matlogg);
-            matlogg = NULL
-                matlogg_antal = 0;
+            matlogg = NULL;
+            matlogg_antal = 0;
             printf("Matloggen är frigjord.\n");
             break;
 
