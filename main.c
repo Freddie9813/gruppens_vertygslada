@@ -18,7 +18,10 @@ static void skriv_meny(void)
     printf("11. FizzBuzz-sammanfattning\n");
     printf("12. Byt plats pa tva tal\n");
     printf("14. Ta bort senaste matningen\n");
+    printf("15. Skriv ut matloggen\n");
     printf("16. Statistik for matloggen (min/max/medel)\n");
+    printf("17. Kopiera matloggen\n");
+    printf("18. Frigör matloggen\n");
     printf("0. Avsluta\n");
     printf("Val: ");
 }
@@ -164,7 +167,7 @@ int main(void)
             printf("Antal primtal: %d\n", raknar_primtal_i_array(tal, antal));
             break;
         }
-        case 11: 
+        case 11:
         {
             int fran, till;
             char sammanfattning[100];
@@ -189,7 +192,6 @@ int main(void)
 
             printf("Efter: a = %.2f, b = %.2f\n", a, b);
             break;
-
         }
         case 14:
         {
@@ -197,6 +199,11 @@ int main(void)
             printf("Matloggen innehaller nu %d matning(ar).\n", matlogg_antal);
             break;
         }
+
+        case 15:
+            skriv_matlogg(matlogg, matlogg_antal);
+            break;
+
         case 16:
         {
             double min, max, medel;
@@ -204,6 +211,24 @@ int main(void)
             printf("Min: %.2f, Max: %.2f, Medel: %.2f\n", min, max, medel);
             break;
         }
+
+        case 17:
+        {
+            int kopia_antal = matlogg_antal;
+            double *kopia = kopiera_matlogg(matlogg, matlogg_antal);
+            printf("Kopierade %d matning(ar) till en ny logg:\n", kopia_antal);
+            skriv_matlogg(kopia, kopia_antal);
+            frigor_matlogg(kopia);
+            printf("(Kopian är nu frigjord igen, den var bara för testet.)\n");
+            break;
+        }
+        case 18:
+            frigor_matlogg(matlogg);
+            matlogg = NULL
+                matlogg_antal = 0;
+            printf("Matloggen är frigjord.\n");
+            break;
+
         case 0:
             if (matlogg != NULL)
             {
@@ -213,7 +238,7 @@ int main(void)
             }
             printf("Avslutar.\n");
             break;
-            default:
+        default:
             printf("Ogiltigt val, forsok igen.\n");
         }
     } while (val != 0);
