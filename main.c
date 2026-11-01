@@ -25,6 +25,7 @@ static void skriv_meny(void)
     printf("17. Kopiera matloggen\n");
     printf("18. Frigör matloggen\n");
     printf("19. Lagg till en sensormatning\n");
+    printf("20. Skriv ut sensorregistret\n");
     printf("0. Avsluta\n");
     printf("Val: ");
 }
@@ -257,7 +258,11 @@ int main(void)
              sensorregister_antal);
              break;
         }
-
+        case 20:
+        {
+            skriv_sensorregister(sensorregister, sensorregister_antal);
+            break;
+        }    
         case 0:
             if (matlogg != NULL)
             {
