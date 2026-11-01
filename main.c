@@ -17,6 +17,7 @@ static void skriv_meny(void)
     printf("10. Rakna primtal i en lista\n");
     printf("11. FizzBuzz-sammanfattning\n");
     printf("12. Byt plats pa tva tal\n");
+    printf("13. Lagg till en matning i matloggen\n");
     printf("14. Ta bort senaste matningen\n");
     printf("15. Skriv ut matloggen\n");
     printf("16. Statistik for matloggen (min/max/medel)\n");
