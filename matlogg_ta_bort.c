@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "verktyg.h"
 
 double *ta_bort_senaste_matning(double *logg, int *antal)
 {
