@@ -194,6 +194,15 @@ int main(void)
             printf("Efter: a = %.2f, b = %.2f\n", a, b);
             break;
         }
+        case 13: 
+        {
+           double varde;
+           printf("Ange matvarde att lagga till: ");
+           scanf("%lf", &varde);
+           matlogg = lagg_till_matning(matlogg, &matlogg_antal, varde);
+           printf("Matloggen innehaller nu %d matning(ar).\n", matlogg_antal);
+           break;
+        }
         case 14:
         {
             matlogg = ta_bort_senaste_matning(matlogg, &matlogg_antal);
