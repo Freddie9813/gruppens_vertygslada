@@ -26,4 +26,7 @@ double *lagg_till_matning(double *logg, int *antal, double varde);
 void skriv_matlogg(double *logg, int antal);
 double *kopiera_matlogg(double *logg, int antal);
 void frigor_matlogg(double *logg);
+Sensormatning *lagg_till_sensormatning(Sensormatning *reg, int *antal,
+    const char *namn, double varde);
+void skriv_sensorregister(Sensormatning *reg, int antal);
 #endif
