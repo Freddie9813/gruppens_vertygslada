@@ -1,26 +1,28 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "verktyg.h"
 
-void lagg_till_matning(double **matlogg, int *antal)
+double *lagg_till_matning(double *logg, int *antal, double varde) 
 {
-    double nytt_varde;
-    double *temp;
-
-    printf("Ange matvarde: ");
-
-    if (scanf("%lf", &nytt_varde) != 1) {
-        printf("Felaktig inmatning.\n");
-        return;
+    double *ny_logg;
+    if (logg == NULL) 
+    {
+        ny_logg = malloc(sizeof(double));
+    } 
+    else 
+    {
+        ny_logg = realloc(logg, (*antal + 1) * sizeof(double));
     }
 
-    temp = realloc(*matlogg, (*antal + 1) * sizeof(double));
 
-    if (temp == NULL) {
+    if (ny_logg == NULL)
+    {
         printf("Minnesallokering misslyckades.\n");
-        return;
+        return logg;
     }
 
-    *matlogg = temp;
-    (*matlogg)[*antal] = nytt_varde;
+    ny_logg[*antal] = varde;
     (*antal)++;
-}
+
+    return ny_logg;
+ }
