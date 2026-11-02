@@ -279,7 +279,7 @@ int main(void)
             }
             else
             {
-                printf("Hittade  \"%s\" på plats %d, värde %.2f\n", namn, index, sensorregister[index].värde);
+                printf("Hittade  \"%s\" på plats %d, varde %.2f\n", namn, index, sensorregister[index].varde);
             }
             break;
         }
