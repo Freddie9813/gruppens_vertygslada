@@ -26,6 +26,7 @@ static void skriv_meny(void)
     printf("18. Frigör matloggen\n");
     printf("19. Lagg till en sensormatning\n");
     printf("20. Skriv ut sensorregistret\n");
+    printf("21. Medelvarde for sensorregistret\n");
     printf("22. Hitta en sensor via namn\n");
     printf("23. Spara sensorregistret till fil\n");
     printf("24. Läs in sensorregistret från fil\n");
@@ -266,7 +267,12 @@ int main(void)
             skriv_sensorregister(sensorregister, sensorregister_antal);
             break;
         }
-
+        case 21:
+        {
+            printf("Medelvarde: %.2f\n",
+                    medelvarde_sensorregister(sensorregister, sensorregister_antal));
+            break;
+        }
         case 22:
         {
             char namn[50];
