@@ -26,6 +26,9 @@ static void skriv_meny(void)
     printf("18. Frigör matloggen\n");
     printf("19. Lagg till en sensormatning\n");
     printf("20. Skriv ut sensorregistret\n");
+    printf("22. Hitta en sensor via namn\n");
+    printf("23. Spara sensorregistret till fil\n");
+    printf("24. Läs in sensorregistret från fil\n");
     printf("0. Avsluta\n");
     printf("Val: ");
 }
@@ -199,14 +202,14 @@ int main(void)
             printf("Efter: a = %.2f, b = %.2f\n", a, b);
             break;
         }
-        case 13: 
+        case 13:
         {
-           double varde;
-           printf("Ange matvarde att lagga till: ");
-           scanf("%lf", &varde);
-           matlogg = lagg_till_matning(matlogg, &matlogg_antal, varde);
-           printf("Matloggen innehaller nu %d matning(ar).\n", matlogg_antal);
-           break;
+            double varde;
+            printf("Ange matvarde att lagga till: ");
+            scanf("%lf", &varde);
+            matlogg = lagg_till_matning(matlogg, &matlogg_antal, varde);
+            printf("Matloggen innehaller nu %d matning(ar).\n", matlogg_antal);
+            break;
         }
         case 14:
         {
@@ -243,7 +246,7 @@ int main(void)
             matlogg_antal = 0;
             printf("Matloggen är frigjord.\n");
             break;
-        case 19: 
+        case 19:
         {
             char namn[50];
             double varde;
@@ -252,17 +255,55 @@ int main(void)
             printf("Matvarde: ");
             scanf("%lf", &varde);
             sensorregister = lagg_till_sensormatning(sensorregister,
-            &sensorregister_antal,
-             namn, varde);
-             printf("Sensorregistret innehaller nu %d post(er).\n",
-             sensorregister_antal);
-             break;
+                                                     &sensorregister_antal,
+                                                     namn, varde);
+            printf("Sensorregistret innehaller nu %d post(er).\n",
+                   sensorregister_antal);
+            break;
         }
         case 20:
         {
             skriv_sensorregister(sensorregister, sensorregister_antal);
             break;
-        }    
+        }
+
+        case 22:
+        {
+            char namn[50];
+            printf("Vilket namn vill du söka efter? ");
+            scanf("%49s", namn);
+            int index = hitta_sensor(sensorregister, sensorregister_antal, namn);
+            if (index == -1)
+            {
+                printf("Hittade ingen sensor med namnet \"%s\".\n", namn);
+            }
+            else
+            {
+                printf("Hittade  \"%s\" på plats %d, värde %.2f\n", namn, index, sensorregister[index].värde);
+            }
+            break;
+        }
+
+        case 23:
+        {
+            char filnamn[100];
+            printf("Filnamn att spara till: ");
+            scanf("%99s", filnamn);
+            spara_sensorregister(filnamn, sensorregister, sensorregister_antal);
+            printf("Sensorregistret sparat till %s.\n", filnamn);
+            break;
+        }
+
+        case 24:
+        {
+            char filnamn[100];
+            printf("Filnamn att läsa från: ");
+            scanf("%99s", filnamn);
+            free(sensorregister);
+            sensorregister = lasa_sensorregister(filnamn, &sensorregister_antal);
+            printf("läste in %d post(er) från %s.\n", sensorregister_antal, filnamn);
+            break;
+        }
         case 0:
             if (matlogg != NULL)
             {
