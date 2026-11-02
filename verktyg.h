@@ -29,4 +29,5 @@ void frigor_matlogg(double *logg);
 Sensormatning *lagg_till_sensormatning(Sensormatning *reg, int *antal,
     const char *namn, double varde);
 void skriv_sensorregister(Sensormatning *reg, int antal);
+double medelvarde_sensorregister(Sensormatning *reg, int antal);
 #endif
