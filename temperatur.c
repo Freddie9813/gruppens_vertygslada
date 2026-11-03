@@ -1,8 +1,9 @@
 #include "verktyg.h"
 
-double celsius_till_fahrenheit(double celsius)
+double celsius_till_fahrenheit(double celsius) 
 {
-    return celsius * 9 / 5 + 32;
+// Omvandlar från Celsius till Fahrenheit
+return (celsius * 9.0 / 5.0) * 32.0;
 }
 
 void konvertera_serie(double *matningar, int antal)
