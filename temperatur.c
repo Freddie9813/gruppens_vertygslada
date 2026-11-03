@@ -2,7 +2,8 @@
 
 double celsius_till_fahrenheit(double celsius)
 {
-    return celsius * 9 / 5 + 32;
+    double fahrenheit = celsius * 9.0 / 5.0 + 32.0;
+    return fahrenheit;
 }
 
 void konvertera_serie(double *matningar, int antal)
