@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <iostream>
+#include <iomanip>
 #include "verktyg.h"
 
 static void skriv_meny(void)
@@ -42,10 +44,13 @@ int main(void)
     Sensormatning *sensorregister = NULL;
     int sensorregister_antal = 0;
 
+    std::cout << std::fixed << std::setprecision(2);
+    setvbuf(stdout, NULL, _IONBF, 0);
+
     do
     {
         skriv_meny();
-        scanf("%d", &val);
+        std::cin >> val;
 
         switch (val)
         {
@@ -101,9 +106,12 @@ int main(void)
         {
             double a, b;
             char operatortecken;
-            printf("Ange uttryck, t.ex. \"4 + 2\": ");
-            scanf("%lf %c %lf", &a, &operatortecken, &b);
-            printf("Resultat: %.2f\n", berakna(a, b, operatortecken));
+
+            std::cout << "Ange uttryck, t.ex. \"4 + 2\": ";
+            std::cin >> a >> operatortecken >> b;
+
+            std::cout << "Resultat: " << berakna(a, b, operatortecken) << "\n";
+
             break;
         }
         case 7:
@@ -192,15 +200,14 @@ int main(void)
         case 12:
         {
             double a, b;
+            std::cout << "Ange tva tal, t.ex. \"3 7\": ";
+            std::cin >> a >> b;
 
-            printf("Ange tva tal, t.ex. \"3 7\": ");
-            scanf("%lf %lf", &a, &b);
+            std::cout << "Fore: a = " << a << ", b = " << b << "\n";
 
-            printf("Fore: a = %.2f, b = %.2f\n", a, b);
+            byt_plats(a, b);
 
-            byt_plats(&a, &b);
-
-            printf("Efter: a = %.2f, b = %.2f\n", a, b);
+            std::cout << "Efter: a = " << a << ", b = " << b << "\n";
             break;
         }
         case 13:
@@ -276,17 +283,22 @@ int main(void)
         case 22:
         {
             char namn[50];
+
             printf("Vilket namn vill du söka efter? ");
-            scanf("%49s", namn);
+            std::cin >> std::setw(50) >> namn;
+
             int index = hitta_sensor(sensorregister, sensorregister_antal, namn);
+
             if (index == -1)
             {
                 printf("Hittade ingen sensor med namnet \"%s\".\n", namn);
             }
             else
             {
-                printf("Hittade  \"%s\" på plats %d, varde %.2f\n", namn, index, sensorregister[index].varde);
+                printf("Hittade \"%s\" på plats %d, varde %.2f\n",
+                    namn, index, sensorregister[index].varde);
             }
+
             break;
         }
 
