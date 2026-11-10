@@ -15,7 +15,7 @@ double *ta_bort_senaste_matning(double *logg, int *antal)
         *antal = 0;
         return NULL;
     }
-    double *ny_logg = realloc(logg, (*antal - 1) * sizeof(double));
+    double *ny_logg = (double *)realloc(logg, (*antal - 1) * sizeof(double));
 
     if (ny_logg == NULL)
     {
