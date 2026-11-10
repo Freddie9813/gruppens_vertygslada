@@ -57,10 +57,10 @@ int main(void)
         case 1:
         {
             double celsius;
-            printf("Ange temperatur i Celsius: ");
-            scanf("%lf", &celsius);
-            printf("%.2f C = %.2f F\n",
-                   celsius, celsius_till_fahrenheit(celsius));
+            std::cout << "Ange temperatur i Celsius: ";
+            std::cin >> celsius;
+            std::cout << celsius << " C = " 
+                      << celsius_till_fahrenheit(celsius) << " F\n";
             break;
         }
         case 2:
@@ -118,22 +118,22 @@ int main(void)
         {
             double matningar[20];
             int antal;
-            printf("Hur manga matningar vill du mata in (max 20)? ");
-            scanf("%d", &antal);
+            std::cout << "Hur manga matningar vill du mata in (max 20)? ";
+            std::cin >> antal;
             for (int i = 0; i < antal; i++)
             {
-                printf("Matning %d (Celsius): ", i + 1);
-                scanf("%lf", &matningar[i]);
+                std::cout << "Matning " << (i + 1) << " (Celsius): ";
+                std::cin >> matningar[i];
             }
 
             konvertera_serie(matningar, antal);
 
-            printf("I Fahrenheit: ");
+            std::cout << "I Fahrenheit: ";
             for (int i = 0; i < antal; i++)
             {
-                printf("%.2f ", matningar[i]);
+                std::cout << matningar[i] << " ";
             }
-            printf("\n");
+            std::cout << "\n";
             break;
         }
         case 8:
