@@ -5,7 +5,7 @@ double rektangelarea(double bredd, double hojd)
     return bredd * hojd;
 }
 
-void storst_rektangel(double bredder[], double hojder[], int antal, double *storsta_area_ut, int *index_ut)
+void storst_rektangel(double bredder[], double hojder[], int antal, double &storsta_area_ut, int &index_ut)
 {
     double storsta_area = bredder[0] * hojder[0];
     int storsta_index = 0;
@@ -20,6 +20,6 @@ void storst_rektangel(double bredder[], double hojder[], int antal, double *stor
             storsta_index = i; 
         }
     }
-    *storsta_area_ut = storsta_area; 
-    *index_ut = storsta_index;
+    storsta_area_ut = storsta_area; 
+    index_ut = storsta_index;
 }
