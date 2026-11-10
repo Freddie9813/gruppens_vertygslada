@@ -230,7 +230,7 @@ int main(void)
             skriv_matlogg(matlogg, matlogg_antal);
             break;
 
-        case 16:
+        case 16://menyvalet skriver bara ut minst värde och det är även fel värde-
         {
             double min, max, medel;
             berakna_loggstatistik(matlogg, matlogg_antal, &min, &max, &medel);
