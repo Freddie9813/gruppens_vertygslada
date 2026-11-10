@@ -19,7 +19,7 @@ void skriv_fizzbuzz(int fran, int till)
         }
         else
         {
-            std::cout << i << " \n";
+            std::cout << i << "\n";
         }
     }
 }
