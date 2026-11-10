@@ -13,11 +13,25 @@ void berakna_loggstatistik(double *logg, int antal, double *min_ut, double *max_
         return;
     }
 
-    for(int i = 0; i < antal; i++)
+    *min_ut = logg[0];
+    *max_ut = logg[0];
+
+    double summa = logg[0];
+
+    for (int i = 1; i < antal; i++)
     {
-        if(logg[i] < logg[i + 1])
+        if(logg[i] < *min_ut)
         {
             *min_ut = logg[i];
         }
+
+        if(logg[i] > *max_ut)
+        {
+            *max_ut = logg[i];
+        }
+
+        summa += logg[i];
     }
+
+    *medel_ut = summa / antal;
 }
