@@ -7,7 +7,7 @@ Sensormatning *lasa_sensorregister(const char *filnamn, int *antal_ut)
     FILE *fil = fopen(filnamn, "r");
     if (fil == NULL)
     {
-        printf("Kunde inte öppna filen %s.\n", filnamn);
+        printf("Kunde inte oppna filen %s.\n", filnamn);
         *antal_ut = 0;
         return NULL;
     }

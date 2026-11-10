@@ -5,7 +5,7 @@ void skriv_matlogg(double *logg, int antal)
 {
     if (antal == 0 || logg == NULL)
     {
-        printf("Matloggen är tom.\n");
+        printf("Matloggen ar tom.\n");
     }
     else
     {

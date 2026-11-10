@@ -6,7 +6,7 @@ void spara_sensorregister(const char *filnamn, Sensormatning *reg, int antal)
     FILE *fil = fopen(filnamn, "w");
     if (fil == NULL)
     {
-        printf("Kunde inte öppna filen %s för skrivning.\n", filnamn);
+        printf("Kunde inte oppna filen %s for skrivning.\n", filnamn);
         return;
     }
 

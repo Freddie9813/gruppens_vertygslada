@@ -25,13 +25,13 @@ static void skriv_meny(void)
     printf("15. Skriv ut matloggen\n");
     printf("16. Statistik for matloggen (min/max/medel)\n");
     printf("17. Kopiera matloggen\n");
-    printf("18. Frigör matloggen\n");
+    printf("18. Frigor matloggen\n");
     printf("19. Lagg till en sensormatning\n");
     printf("20. Skriv ut sensorregistret\n");
     printf("21. Medelvarde for sensorregistret\n");
     printf("22. Hitta en sensor via namn\n");
     printf("23. Spara sensorregistret till fil\n");
-    printf("24. Läs in sensorregistret från fil\n");
+    printf("24. Las in sensorregistret fran fil\n");
     printf("0. Avsluta\n");
     printf("Val: ");
 }
@@ -230,7 +230,7 @@ int main(void)
             skriv_matlogg(matlogg, matlogg_antal);
             break;
 
-        case 16://menyvalet skriver bara ut minst värde och det är även fel värde-
+        case 16: // menyvalet skriver bara ut minst värde och det är även fel värde-
         {
             double min, max, medel;
             berakna_loggstatistik(matlogg, matlogg_antal, &min, &max, &medel);
@@ -245,21 +245,21 @@ int main(void)
             printf("Kopierade %d matning(ar) till en ny logg:\n", kopia_antal);
             skriv_matlogg(kopia, kopia_antal);
             frigor_matlogg(kopia);
-            printf("(Kopian är nu frigjord igen, den var bara för testet.)\n");
+            printf("(Kopian ar nu frigjord igen, den var bara for testet.)\n");
             break;
         }
         case 18:
             frigor_matlogg(matlogg);
             matlogg = NULL;
             matlogg_antal = 0;
-            printf("Matloggen är frigjord.\n");
+            printf("Matloggen ar frigjord.\n");
             break;
         case 19:
         {
             char namn[50];
             double varde;
             printf("Namn pa sensorn (utan mellanslag): ");
-            std::cin >> std::setw(50)>> namn;
+            std::cin >> std::setw(50) >> namn;
             printf("Matvarde: ");
             std::cin >> varde;
             sensorregister = lagg_till_sensormatning(sensorregister,
@@ -277,14 +277,14 @@ int main(void)
         case 21:
         {
             printf("Medelvarde: %.2f\n",
-                    medelvarde_sensorregister(sensorregister, sensorregister_antal));
+                   medelvarde_sensorregister(sensorregister, sensorregister_antal));
             break;
         }
         case 22:
         {
             char namn[50];
 
-            printf("Vilket namn vill du söka efter? ");
+            printf("Vilket namn vill du soka efter? ");
             std::cin >> std::setw(50) >> namn;
 
             int index = hitta_sensor(sensorregister, sensorregister_antal, namn);
@@ -295,8 +295,8 @@ int main(void)
             }
             else
             {
-                printf("Hittade \"%s\" på plats %d, varde %.2f\n",
-                    namn, index, sensorregister[index].varde);
+                printf("Hittade \"%s\" pa plats %d, varde %.2f\n",
+                       namn, index, sensorregister[index].varde);
             }
 
             break;
@@ -315,11 +315,11 @@ int main(void)
         case 24:
         {
             char filnamn[100];
-            printf("Filnamn att läsa från: ");
+            printf("Filnamn att lasa fran: ");
             std::cin >> std::setw(100) >> filnamn;
             free(sensorregister);
             sensorregister = lasa_sensorregister(filnamn, &sensorregister_antal);
-            printf("läste in %d post(er) från %s.\n", sensorregister_antal, filnamn);
+            printf("laste in %d post(er) fran %s.\n", sensorregister_antal, filnamn);
             break;
         }
         case 0:
