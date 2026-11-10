@@ -8,7 +8,7 @@ double *kopiera_matlogg(double *logg, int antal)
         return NULL;
     }
 
-    double *kopia = malloc(antal * sizeof(double));
+    double *kopia = (double *)malloc(antal * sizeof(double));
     if (kopia == NULL)
     {
         return NULL; // detta är om allokering misslyckas !
