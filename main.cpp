@@ -74,31 +74,31 @@ int main(void)
         case 3:
         {
             int tal;
-            printf("Ange ett tal: ");
-            scanf("%d", &tal);
+            std::cout << "Ange ett tal: ";
+            std::cin >> tal;
             skriv_multiplikationstabell(tal);
             break;
         }
         case 4:
         {
             int tal;
-            printf("Ange ett heltal: ");
-            scanf("%d", &tal);
+            std::cout << "Ange ett heltal: ";
+            std::cin >> tal;
             if (ar_primtal(tal))
             {
-                printf("%d ar ett primtal.\n", tal);
+                std::cout << tal << " ar ett primtal.\n";
             }
             else
             {
-                printf("%d ar inte ett primtal.\n", tal);
+                std::cout << tal << " ar inte ett primtal.\n";
             }
             break;
         }
         case 5:
         {
             int fran, till;
-            printf("Ange start och slut (t.ex. 1 20): ");
-            scanf("%d %d", &fran, &till);
+            std::cout << "Ange start och slut (t.ex. 1 20): ";
+            std::cin >> fran >> till;
             skriv_fizzbuzz(fran, till);
             break;
         }
@@ -161,12 +161,12 @@ int main(void)
         {
             int tal[20];
             int antal;
-            printf("Hur manga tabeller vill du skriva ut (max antal 20)? ");
-            scanf("%d", &antal);
+            std::cout << "Hur manga tabeller vill du skriva ut (max antal 20)? ";
+            std::cin >> antal;
             for (int i = 0; i < antal; i++)
             {
-                printf("Tal %d: ", i + 1);
-                scanf("%d", &tal[i]);
+                std::cout << "Tal " << (i + 1) << ": ";
+                std::cin >> tal[i];
             }
             skriv_flera_tabeller(tal, antal);
             break;
@@ -175,14 +175,15 @@ int main(void)
         {
             int tal[20];
             int antal;
-            printf("Hur manga tal vill du kontrollera (max antal 20)? ");
-            scanf("%d", &antal);
+            std::cout << "Hur manga tal vill du kontrollera (max antal 20)? ";
+            std::cin >> antal;
             for (int i = 0; i < antal; i++)
             {
-                printf("tal %d: ", i + 1);
-                scanf("%d", &tal[i]);
+                std::cout << "tal " << (i + 1) << ": ";
+                std::cin >> tal[i];
             }
-            printf("Antal primtal: %d\n", raknar_primtal_i_array(tal, antal));
+            std::cout << "Antal primtal: "
+                      << raknar_primtal_i_array(tal, antal) << "\n";
             break;
         }
         case 11:
@@ -190,11 +191,11 @@ int main(void)
             int fran, till;
             char sammanfattning[100];
 
-            printf("Ange start och slut (t.ex. 1 20): ");
-            scanf("%d %d", &fran, &till);
+            std::cout << "Ange start och slut (t.ex. 1 20): ";
+            std::cin >> fran >> till;
 
             fizzbuzz_sammanfattning(fran, till, sammanfattning);
-            printf("%s\n", sammanfattning);
+            std::cout << sammanfattning << "\n";
             break;
         }
         case 12:
@@ -259,7 +260,7 @@ int main(void)
             char namn[50];
             double varde;
             printf("Namn pa sensorn (utan mellanslag): ");
-            std::cin >> std::setw(50)>> namn;
+            std::cin >> std::setw(50) >> namn;
             printf("Matvarde: ");
             std::cin >> varde;
             sensorregister = lagg_till_sensormatning(sensorregister,
@@ -277,7 +278,7 @@ int main(void)
         case 21:
         {
             printf("Medelvarde: %.2f\n",
-                    medelvarde_sensorregister(sensorregister, sensorregister_antal));
+                   medelvarde_sensorregister(sensorregister, sensorregister_antal));
             break;
         }
         case 22:
@@ -296,7 +297,7 @@ int main(void)
             else
             {
                 printf("Hittade \"%s\" på plats %d, varde %.2f\n",
-                    namn, index, sensorregister[index].varde);
+                       namn, index, sensorregister[index].varde);
             }
 
             break;

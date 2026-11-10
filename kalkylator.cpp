@@ -1,28 +1,28 @@
 #include "verktyg.h"
-
+#include <iostream>
 double berakna(double a, double b, char operatortecken)
 {
-switch (operatortecken)
-{
+    switch (operatortecken)
+    {
     case '+':
-    return a + b;
+        return a + b;
 
     case '-':
-    return a - b;
+        return a - b;
 
     case '*':
-    return a * b;
+        return a * b;
 
     case '/':
-    if ( b != 0)
-    {
-        return a / b;
-    }
-    return 0;
+        if (b != 0)
+        {
+            return a / b;
+        }
+        return 0;
 
     default:
-    return 0;
-}
+        return 0;
+    }
 }
 void byt_plats(double &a, double &b)
 {
