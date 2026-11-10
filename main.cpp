@@ -306,7 +306,7 @@ int main(void)
         {
             char filnamn[100];
             printf("Filnamn att spara till: ");
-            scanf("%99s", filnamn);
+            std::cin >> std::setw(100) >> filnamn;
             spara_sensorregister(filnamn, sensorregister, sensorregister_antal);
             printf("Sensorregistret sparat till %s.\n", filnamn);
             break;
@@ -316,7 +316,7 @@ int main(void)
         {
             char filnamn[100];
             printf("Filnamn att läsa från: ");
-            scanf("%99s", filnamn);
+            std::cin >> std::setw(100) >> filnamn;
             free(sensorregister);
             sensorregister = lasa_sensorregister(filnamn, &sensorregister_antal);
             printf("läste in %d post(er) från %s.\n", sensorregister_antal, filnamn);
