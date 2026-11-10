@@ -214,7 +214,7 @@ int main(void)
         {
             double varde;
             printf("Ange matvarde att lagga till: ");
-            scanf("%lf", &varde);
+            std::cin >> varde;
             matlogg = lagg_till_matning(matlogg, &matlogg_antal, varde);
             printf("Matloggen innehaller nu %d matning(ar).\n", matlogg_antal);
             break;
@@ -259,9 +259,9 @@ int main(void)
             char namn[50];
             double varde;
             printf("Namn pa sensorn (utan mellanslag): ");
-            scanf("%49s", namn);
+            std::cin >> std::setw(50)>> namn;
             printf("Matvarde: ");
-            scanf("%lf", &varde);
+            std::cin >> varde;
             sensorregister = lagg_till_sensormatning(sensorregister,
                                                      &sensorregister_antal,
                                                      namn, varde);
