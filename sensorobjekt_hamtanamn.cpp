@@ -1,6 +1,6 @@
 #include "sensorobjekt_klass.h"
 
-const char *Sensor::hamtanamn() const
+const char *Sensor::hamtaNamn() const
 {
     return namn;
 }

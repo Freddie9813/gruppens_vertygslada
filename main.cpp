@@ -434,8 +434,8 @@ int main(void)
             std::cout << "Vilken sensor (0-2)? ";
             std::cin >> index;
             std::cout << "Namn: " << sensorer[index].hamtaNamn() << "\n";
-            std::cout << "Senaste varde: " << sensor[index].hamtaSenasteVarde() << "\n";
-            std::cout << "Antal matningar: " << sensor[index].hamtaAntalMatningar() << "\n";
+            std::cout << "Senaste varde: " << sensorer[index].hamtaSenasteVarde() << "\n";
+            std::cout << "Antal matningar: " << sensorer[index].hamtaAntalMatningar() << "\n";
             break;
         }
 
