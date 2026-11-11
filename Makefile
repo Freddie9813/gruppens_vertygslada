@@ -9,7 +9,10 @@ KALLOR = main.cpp temperatur.cpp geometri.cpp multiplikation.cpp primtal.cpp \
 		sensor_medelvarde.cpp sensor_hitta.cpp sensor_spara.cpp sensor_lasa.cpp\
 		sensorobjekt_klass.cpp sensorobjekt_uppdatera.cpp \
 		sensorobjekt_nollstall.cpp sensorobjekt_grans.cpp \
-		sensorobjekt_bytnamn.cpp sensorobjekt_skriv.cpp sensorobjekt_jamfor.cpp
+		sensorobjekt_bytnamn.cpp sensorobjekt_skriv.cpp sensorobjekt_jamfor.cpp\
+		sensorobjekt_hamtanamn.cpp sensorobjekt_hamtavarde.cpp \
+		sensorobjekt_hamtaantal.cpp sensorobjekt_sattantal.cpp \
+		sensorobjekt_giltig.cpp
 
 OBJEKT = $(KALLOR:.cpp=.o)
 
