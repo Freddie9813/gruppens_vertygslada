@@ -457,7 +457,7 @@ int main(void)
             int index, nyttAntal;
             std::cout << "Vilken sensor (0-2)? ";
             std::cin >> index;
-            if(index < 0 || index >= sizeof(sensorer) / sizeof(sensorer[0]))
+            if(index < 0 || index >= 3)
             {
                 std::cout<<"Ogiltig sensor! Valj mellan 0-2.\n";
                 break;
