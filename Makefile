@@ -12,7 +12,7 @@ KALLOR = main.cpp temperatur.cpp geometri.cpp multiplikation.cpp primtal.cpp \
 		sensorobjekt_bytnamn.cpp sensorobjekt_skriv.cpp sensorobjekt_jamfor.cpp\
 		sensorobjekt_hamtanamn.cpp sensorobjekt_hamtavarde.cpp \
 		sensorobjekt_hamtaantal.cpp sensorobjekt_sattantal.cpp \
-		sensorobjekt_giltig.cpptemperatursensor_konstruktor.cpp \
+		sensorobjekt_giltig.cpp temperatursensor_konstruktor.cpp \
 		temperatursensor_fahrenheit.cpp rorelsesensor_konstruktor.cpp \
 		rorelsesensor_larm.cpp fuktsensor_konstruktor.cpp fuktsensor_kritisk.cpp
 
