@@ -426,7 +426,7 @@ int main(void)
             std::cout << "Jamfor sensor (0-2) och sensor (0-2): ";
             std::cin >> index1 >> index2;
 
-            if (sensorer[index1]->harHogreVarde(sensorer[index2]))
+            if (sensorer[index1]->harHogreVarde(*sensorer[index2]))
             {
                 std::cout << "Sensor " << index1
                           << " har ett hogre varde an sensor "
