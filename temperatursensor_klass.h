@@ -6,7 +6,7 @@
 class TemperatureSensor : public Sensor 
 {
     private:
-        char enhetr[20];
+        char enhet[20];
 
     public:
         TemperatureSensor(const char *sensornamn, double startvarde,
