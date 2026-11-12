@@ -5,15 +5,17 @@
 
 class HumiditySensor : public Sensor
 {
-    private:
-        double kritiskGrans;
+private:
+    double kritiskGrans;
 
-    public:
-        HumiditySensor(const char *sensornamn, double startvarde,
-                        double kritiskGransvarde);
+public:
+    HumiditySensor(const char *sensornamn, double startvarde,
+                   double kritiskGransvarde);
 
-        double hamtaKritiskGrans() const;
-        bool arKritisktFuktigt() const;
+    double hamtaKritiskGrans() const;
+    bool arKritisktFuktigt() const;
+    const char *hamtaTyp() const override;
+    void skrivUt() const override;
 };
 
 #endif

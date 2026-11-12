@@ -5,14 +5,16 @@
 
 class MotionSensor : public Sensor
 {
-    private: 
-        bool rorelseDetekterad;
+private:
+    bool rorelseDetekterad;
 
-    public:
-        MotionSensor(const char *Sensornamn);
+public:
+    MotionSensor(const char *Sensornamn);
 
-        bool harRorelseDetekterats() const;
-        void utlosLarm();
+    bool harRorelseDetekterats() const;
+    void utlosLarm();
+    const char *hamtaTyp() const override;
+    void skrivUt() const override;
 };
 
 #endif

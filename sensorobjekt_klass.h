@@ -11,13 +11,13 @@ protected:
 public:
     Sensor();
     Sensor(const char *sensornamn, double startvarde);
-    ~Sensor();
+    virtual ~Sensor();
 
     void uppdateraVarde(double nyttVarde);
     void nollstallRakning();
     bool arInomGrans(double min, double max) const;
     bool bytNamn(const char *nyttNamn);
-    void skrivUt() const;
+    virtual void skrivUt() const;
     bool harHogreVarde(const Sensor &annan) const;
 
     const char *hamtaNamn() const;
@@ -25,6 +25,8 @@ public:
     int hamtaAntalMatningar() const;
     bool sattAntalMatningar(int nyttAntal);
     bool arGiltig() const;
+
+    virtual const char *hamtaTyp() const = 0;
 };
 
 #endif
