@@ -67,9 +67,10 @@ int main(void)
     int sensorregister_antal = 0;
 
     std::vector<Sensor *> sensorer;
-    sensorer.push_back(new TemperatureSensor("Temp-ute", 18.5 "Celsius"));
+    sensorer.push_back(new TemperatureSensor("Temp-ute", 18.5, "Celsius"));
     sensorer.push_back(new TemperatureSensor("Temp-inne", 21.0, "Celsius"));
     sensorer.push_back(new HumiditySensor("Luftfuktighet", 45.0, 70.0));
+    std::vector<std::string> anteckningar;
 
     TemperatureSensor temperatursensor("Temp-utomhus", 15.0, "Celsius");
     MotionSensor rorelsesensor("Rorelse-hall");
@@ -252,13 +253,14 @@ int main(void)
             break;
         }
         case 14:
+        {
             if (!matlogg.empty())
             {
                 matlogg.pop_back();
                 printf("Matloggen innehaller nu %d matning(ar).\n", (int)matlogg.size());
-                break;
             }
-
+            break;
+        }
         case 15:
             if (matlogg.empty())
             {
@@ -281,7 +283,7 @@ int main(void)
             else
             {
                 auto minIt = std::min_element(matlogg.begin(), matlogg.end());
-                auto maxIt = std::max_element(matlogg.begin(), matlogg.end()) double summa = 0;
+                auto maxIt = std::max_element(matlogg.begin(), matlogg.end()); double summa = 0;
                 for (double varde : matlogg)
                 {
                     summa += varde;
@@ -570,14 +572,13 @@ int main(void)
             std::cout << "Vilken typ (1=Temperatur, 2=Rorelse, 3=Fukt)? ";
             std::cin >> typ;
             std::cout << "Namn (utan mellanslag): ";
-        std:
-            cin >> namn;
+            std::cin >> namn;
 
             if (typ == 1)
             {
                 std::cout << "Startvarde: ";
                 std::cin >> startvarde;
-                sensorer.push_back(new TemperatureSensor(namn.c : str(), startvarde, "Celsius"));
+                sensorer.push_back(new TemperatureSensor(namn.c_str(), startvarde, "Celsius"));
             }
             else if (typ == 2)
             {
@@ -597,6 +598,92 @@ int main(void)
             }
 
             std::cout << "Sensor tillagd. Antal sensorer nu: " << sensorer.size() << "\n";
+            break;
+        }
+        case 41: 
+        {
+            std::cin.ignore();
+            std::string anteckning;
+            std::cout << "Skriv din anteckning: ";
+            std::getline(std::cin, anteckning);
+            anteckningar.push_back(anteckning);
+            std::cout << "Anteckning tillagd. Antal: " 
+                      << anteckningar.size() << "\n";
+            break;
+        }
+        case 42:
+        {
+            if (anteckningar.empty()) 
+            {
+                std::cout << "Inga anteckningar an.\n";
+            }
+            else
+            {
+                for (size_t i = 0; i < anteckningar.size(); i++)
+                {
+                    std::cout << i << ": " << anteckningar[i] << "\n";
+                }
+            }
+            break;
+        }
+        case 43:
+        {
+            std::cin.ignore();
+            std::string sokord;
+            std::cout << "Sok efter ordet: ";
+            std::getline(std::cin, sokord);
+
+            bool hittad = false;
+            for (size_t i = 0; i < anteckningar.size(); i++)
+            {
+                if (anteckningar[i].find(sokord) != std::string::npos)
+                {
+                    std::cout << i << ": " << anteckningar[i] << "\n";
+                    hittad = true;
+                }
+            }
+            if (!hittad)
+            {
+                std::cout << "Hittade ingen anteckning med ordet \""
+                          << sokord << "\".\n";
+            }
+            break;
+        }
+        case 44:
+        {
+            std::sort(anteckningar.begin(), anteckningar.end());
+            std::cout << 
+            "Anteckningar ar nu sorterade i bokstavsordning.\n";
+            break;
+        }
+        case 45:
+        {
+            if (anteckningar.empty())
+            {
+                std::cout << "Inga anteckningar att ta bort.\n";
+                break;
+            }
+            int index;
+            std::cout << "Vilket index vill du ta bort (0-"
+                      << (anteckningar.size() - 1) << ")? ";
+            std::cin >> index;
+            anteckningar.erase(anteckningar.begin() + index);
+            std::cout << "Borttagen. Antal kvar: " << anteckningar.size() 
+                      << "\n";
+            break;
+        }
+        case 46:
+        {
+            std::cout << "Antal anteckningar just nu: " 
+                      << anteckningar.size() << "\n";
+            std::cout << "Rensa alla (1 = ja, 0 = nej)? ";
+            int svar;
+            std::cin >> svar;
+            if (svar == 1)
+            {
+                anteckningar.clear();
+                std::cout << "Alla anteckningar rensade.\n";
+            }
             break;
         }
         case 0:
