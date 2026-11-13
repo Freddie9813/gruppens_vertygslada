@@ -7,6 +7,9 @@
 #include "temperatursensor_klass.h"
 #include "rorelsesensor_klass.h"
 #include "fuktsensor_klass.h"
+#include <vector>
+#include <string>
+#include <algorithm>
 
 static void skriv_meny(void)
 
@@ -29,7 +32,7 @@ static void skriv_meny(void)
     printf("15. Skriv ut matloggen\n");
     printf("16. Statistik for matloggen (min/max/medel)\n");
     printf("17. Kopiera matloggen\n");
-    printf("18. Frigor matloggen\n");
+    printf("18. Rensa matloggen\n");
     printf("19. Lagg till en sensormatning\n");
     printf("20. Skriv ut sensorregistret\n");
     printf("21. Medelvarde for sensorregistret\n");
@@ -51,6 +54,7 @@ static void skriv_meny(void)
     printf("37. Utlos rorelselarmet\n");
     printf("38. Visa fuktsensorns kritiska grans\n");
     printf("39. Kontrollera om fuktsensorn ar kritiskt fuktig\n");
+    printf("40. Lagg till en ny sensor\n");
     printf("0. Avsluta\n");
     printf("Val: ");
 }
@@ -58,15 +62,14 @@ static void skriv_meny(void)
 int main(void)
 {
     int val;
-    double *matlogg = NULL;
-    int matlogg_antal = 0;
+    std::vector<double> matlogg;
     Sensormatning *sensorregister = NULL;
     int sensorregister_antal = 0;
 
-    Sensor *sensorer[3];
-    sensorer[0] = new TemperatureSensor("Temp-ute", 18.5, "Celsius");
-    sensorer[1] = new TemperatureSensor("Temp-inne", 21.0, "Celsius");
-    sensorer[2] = new HumiditySensor("Luftfuktighet", 45.0, 70.0);
+    std::vector<Sensor *> sensorer;
+    sensorer.push_back(new TemperatureSensor("Temp-ute", 18.5 "Celsius"));
+    sensorer.push_back(new TemperatureSensor("Temp-inne", 21.0, "Celsius"));
+    sensorer.push_back(new HumiditySensor("Luftfuktighet", 45.0, 70.0));
 
     TemperatureSensor temperatursensor("Temp-utomhus", 15.0, "Celsius");
     MotionSensor rorelsesensor("Rorelse-hall");
@@ -244,44 +247,65 @@ int main(void)
             double varde;
             printf("Ange matvarde att lagga till: ");
             std::cin >> varde;
-            matlogg = lagg_till_matning(matlogg, &matlogg_antal, varde);
-            printf("Matloggen innehaller nu %d matning(ar).\n", matlogg_antal);
+            matlogg.push_back(varde);
+            printf("Matloggen innehaller nu %d matning(ar).\n", (int)matlogg.size());
             break;
         }
         case 14:
-        {
-            matlogg = ta_bort_senaste_matning(matlogg, &matlogg_antal);
-            printf("Matloggen innehaller nu %d matning(ar).\n", matlogg_antal);
-            break;
-        }
+            if (!matlogg.empty())
+            {
+                matlogg.pop_back();
+                printf("Matloggen innehaller nu %d matning(ar).\n", (int)matlogg.size());
+                break;
+            }
 
         case 15:
-            skriv_matlogg(matlogg, matlogg_antal);
+            if (matlogg.empty())
+            {
+                printf("Matloggen ar tom.\n");
+            }
+            else
+            {
+                for (double varde : matlogg)
+                {
+                    printf("%.2f\n", varde);
+                }
+            }
             break;
 
-        case 16: // menyvalet skriver bara ut minst värde och det är även fel värde-
-        {
-            double min, max, medel;
-            berakna_loggstatistik(matlogg, matlogg_antal, &min, &max, &medel);
-            printf("Min: %.2f, Max: %.2f, Medel: %.2f\n", min, max, medel);
+        case 16:
+            if (matlogg.empty())
+            {
+                printf("Matloggen ar tom.\n");
+            }
+            else
+            {
+                auto minIt = std::min_element(matlogg.begin(), matlogg.end());
+                auto maxIt = std::max_element(matlogg.begin(), matlogg.end()) double summa = 0;
+                for (double varde : matlogg)
+                {
+                    summa += varde;
+                }
+
+                printf("Min: %.2f, Max: %.2f, Medel: %.2f\n",
+                       *minIt, *maxIt, summa / matlogg.size());
+            }
             break;
-        }
 
         case 17:
         {
-            int kopia_antal = matlogg_antal;
-            double *kopia = kopiera_matlogg(matlogg, matlogg_antal);
-            printf("Kopierade %d matning(ar) till en ny logg:\n", kopia_antal);
-            skriv_matlogg(kopia, kopia_antal);
-            frigor_matlogg(kopia);
-            printf("(Kopian ar nu frigjord igen, den var bara for testet.)\n");
+            std::vector<double> kopia = matlogg;
+            printf("Kopierade %d matning(ar) till en ny logg:\n", (int)kopia.size());
+            for (double varde : kopia)
+            {
+                printf("%.2f\n", varde);
+            }
+            printf("Kopian stadas bort automatiskt nar case-blocket avslutas.)\n");
             break;
         }
         case 18:
-            frigor_matlogg(matlogg);
-            matlogg = NULL;
-            matlogg_antal = 0;
-            printf("Matloggen ar frigjord.\n");
+            matlogg.clear();
+            printf("Matloggen ar rensad.\n");
             break;
         case 19:
         {
@@ -353,7 +377,7 @@ int main(void)
         }
 
         case 25:
-            for (int i = 0; i < 3; i++)
+            for (size_t i = 0; i < sensorer.size(); i++)
             {
                 std::cout << i << ": ";
                 sensorer[i]->skrivUt();
@@ -363,7 +387,7 @@ int main(void)
         {
             int index;
             double nyttVarde;
-            std::cout << "Vilken sensor (0-2)? ";
+            std::cout << ”Vilken sensor(0 -” << (sensorer.size() - 1) << ”) ? ”;
             std::cin >> index;
             std::cout << "Nytt varde: ";
             std::cin >> nyttVarde;
@@ -374,7 +398,7 @@ int main(void)
         case 27:
         {
             int index;
-            std::cout << "Vilken sensor (0-2)? ";
+            std::cout << ”Vilken sensor(0 -” << (sensorer.size() - 1) << ”) ? ”;
             std::cin >> index;
             sensorer[index]->nollstallRakning();
             sensorer[index]->skrivUt();
@@ -385,7 +409,7 @@ int main(void)
         {
             int index;
             double min, max;
-            std::cout << "Vilken sensor (0-2)? ";
+            std::cout << ”Vilken sensor(0 -” << (sensorer.size() - 1) << ”) ? ”;
             std::cin >> index;
             std::cout << "Undre och ovre grans: ";
             std::cin >> min >> max;
@@ -404,7 +428,7 @@ int main(void)
         {
             int index;
             char nyttNamn[50];
-            std::cout << "Vilken sensor (0-2)? ";
+            std::cout << ”Vilken sensor(0 -” << (sensorer.size() - 1) << ”) ? ”;
             std::cin >> index;
             std::cout << "Nytt namn (utan mellanslag): ";
             std::cin >> std::setw(50) >> nyttNamn;
@@ -423,7 +447,7 @@ int main(void)
         {
             int index1, index2;
 
-            std::cout << "Jamfor sensor (0-2) och sensor (0-2): ";
+            std::cout << "Jamfor sensor (0-" << (sensorer.size() - 1) << ") och sensor (0-" << (sensorer.size() - 1) << "): ";
             std::cin >> index1 >> index2;
 
             if (sensorer[index1]->harHogreVarde(*sensorer[index2]))
@@ -444,7 +468,7 @@ int main(void)
         case 31:
         {
             int index;
-            std::cout << "Vilken sensor (0-2)? ";
+            std::cout << ”Vilken sensor(0 -” << (sensorer.size() - 1) << ”) ? ”;
             std::cin >> index;
             std::cout << "Namn: " << sensorer[index]->hamtaNamn() << "\n";
             std::cout << "Senaste varde: " << sensorer[index]->hamtaSenasteVarde() << "\n";
@@ -455,7 +479,7 @@ int main(void)
         case 32:
         {
             int index, nyttAntal;
-            std::cout << "Vilken sensor (0-2)? ";
+            std::cout << ”Vilken sensor(0 -” << (sensorer.size() - 1) << ”) ? ”;
             std::cin >> index;
             if (index < 0 || index >= 3)
             {
@@ -479,7 +503,7 @@ int main(void)
         case 33:
         {
             int index;
-            std::cout << "Vilken sensor (0-2)? ";
+            std::cout << ”Vilken sensor(0 -” << (sensorer.size() - 1) << ”) ? ”;
             std::cin >> index;
             if (sensorer[index]->arGiltig())
             {
@@ -537,20 +561,53 @@ int main(void)
             }
             break;
         }
-        case 0:
-            if (matlogg != NULL)
+        case 40:
+        {
+            int typ;
+            std::string namn;
+            double startvarde;
+
+            std::cout << "Vilken typ (1=Temperatur, 2=Rorelse, 3=Fukt)? ";
+            std::cin >> typ;
+            std::cout << "Namn (utan mellanslag): ";
+        std:
+            cin >> namn;
+
+            if (typ == 1)
             {
-                frigor_matlogg(matlogg);
-                matlogg = NULL;
-                matlogg_antal = 0;
+                std::cout << "Startvarde: ";
+                std::cin >> startvarde;
+                sensorer.push_back(new TemperatureSensor(namn.c : str(), startvarde, "Celsius"));
             }
+            else if (typ == 2)
+            {
+                sensorer.push_back(new MotionSensor(namn.c_str()));
+            }
+            else if (typ == 3)
+            {
+                double kritisk;
+                std::cout << "Startvarde och kritisk grans: ";
+                std::cin >> startvarde >> kritisk;
+                sensorer.push_back(new HumiditySensor(namn.c_str(), startvarde, kritisk));
+            }
+            else
+            {
+                std::cout << "Okand typ.\n";
+                break;
+            }
+
+            std::cout << "Sensor tillagd. Antal sensorer nu: " << sensorer.size() << "\n";
+            break;
+        }
+        case 0:
             free(sensorregister);
             sensorregister = NULL;
             sensorregister_antal = 0;
 
-            delete sensorer[0];
-            delete sensorer[1];
-            delete sensorer[2];
+            for (Sensor *s : sensorer)
+            {
+                delete s;
+            }
             printf("Avslutar.\n");
             break;
         default:
