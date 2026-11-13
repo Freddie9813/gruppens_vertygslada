@@ -537,6 +537,92 @@ int main(void)
             }
             break;
         }
+        case 41: 
+        {
+            std::cin.ignore();
+            std::string anteckning;
+            std::cout << "Skriv din anteckning: ";
+            std::getline(std::cin, anteckning);
+            anteckningar.push_back(anteckning);
+            std::cout << "Anteckning tillagd. Antal: " 
+                      << anteckningar.size() << "\n";
+            break;
+        }
+        case 42:
+        {
+            if (anteckningar.empty()) 
+            {
+                std::cout << "Inga anteckningar an.\n";
+            }
+            else
+            {
+                for (size_t i = 0; i < anteckningar.size(); i++)
+                {
+                    std::cout << i << ": " << anteckningar[i] << "\n";
+                }
+            }
+            break;
+        }
+        case 43:
+        {
+            std::cin.ignore();
+            std::string sokord;
+            std::cout << "Sok efter ordet: ";
+            std::getline(std::cin, sokord);
+
+            bool hittad = false;
+            for (size_t i = 0; i < anteckningar.size(); i++)
+            {
+                if (anteckningar[i].find(sokord) != std::string::npos)
+                {
+                    std::cout << i << ": " << anteckningar[i] << "\n";
+                    hittad = true;
+                }
+            }
+            if (!hittad)
+            {
+                std::cout << "Hittade ingen anteckning med ordet \""
+                          << sokord << "\".\n";
+            }
+            break;
+        }
+        case 44:
+        {
+            std::sort(anteckningar.begin(), anteckningar.end());
+            std::cout << 
+            "Anteckningar ar nu sorterade i bokstavsordning.\n";
+            break;
+        }
+        case 45:
+        {
+            if (anteckningar.empty())
+            {
+                std::cout << "Inga anteckningar att ta bort.\n";
+                break;
+            }
+            int index;
+            std::cout << "Vilket index vill du ta bort (0-"
+                      << (anteckningar.size() - 1) << ")? ";
+            std::cin >> index;
+            anteckningar.erase(anteckningar.begin() + index);
+            std::cout << "Borttagen. Antal kvar: " << anteckningar.size() 
+                      << "\n";
+            break;
+        }
+        case 46:
+        {
+            std::cout << "Antal anteckningar just nu: " 
+                      << anteckningar.size() << "\n";
+            std::cout << "Rensa alla (1 = ja, 0 = nej)? ";
+            int svar;
+            std::cin >> svar;
+            if (svar == 1)
+            {
+                anteckningar.clear();
+                std::cout << "Alla anteckningar rensade.\n";
+            }
+            break;
+        }
         case 0:
             if (matlogg != NULL)
             {
