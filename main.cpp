@@ -55,6 +55,12 @@ static void skriv_meny(void)
     printf("38. Visa fuktsensorns kritiska grans\n");
     printf("39. Kontrollera om fuktsensorn ar kritiskt fuktig\n");
     printf("40. Lagg till en ny sensor\n");
+    printf("41. Lagg till en anteckning\n");
+    printf("42. Visa alla anteckningar\n");
+    printf("43. Sok efter ett ord i anteckningarna\n");
+    printf("44. Sortera anteckningarna\n");
+    printf("45. Ta bort en anteckning\n");
+    printf("46. Rensa alla anteckningar\n");
     printf("0. Avsluta\n");
     printf("Val: ");
 }
@@ -257,8 +263,8 @@ int main(void)
             if (!matlogg.empty())
             {
                 matlogg.pop_back();
-                printf("Matloggen innehaller nu %d matning(ar).\n", (int)matlogg.size());
             }
+            printf("Matloggen innehaller nu %d matning(ar).\n", (int)matlogg.size());
             break;
         }
         case 15:
@@ -283,7 +289,8 @@ int main(void)
             else
             {
                 auto minIt = std::min_element(matlogg.begin(), matlogg.end());
-                auto maxIt = std::max_element(matlogg.begin(), matlogg.end()); double summa = 0;
+                auto maxIt = std::max_element(matlogg.begin(), matlogg.end()); 
+                double summa = 0;
                 for (double varde : matlogg)
                 {
                     summa += varde;
