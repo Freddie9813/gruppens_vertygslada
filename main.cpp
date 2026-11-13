@@ -387,7 +387,7 @@ int main(void)
         {
             int index;
             double nyttVarde;
-            std::cout << ”Vilken sensor(0 -” << (sensorer.size() - 1) << ”) ? ”;
+            std::cout << "Vilken sensor(0 -" << (sensorer.size() - 1) << ") ? ";
             std::cin >> index;
             std::cout << "Nytt varde: ";
             std::cin >> nyttVarde;
@@ -398,7 +398,7 @@ int main(void)
         case 27:
         {
             int index;
-            std::cout << ”Vilken sensor(0 -” << (sensorer.size() - 1) << ”) ? ”;
+            std::cout << "Vilken sensor(0 -" << (sensorer.size() - 1) << ") ? ";
             std::cin >> index;
             sensorer[index]->nollstallRakning();
             sensorer[index]->skrivUt();
@@ -409,7 +409,7 @@ int main(void)
         {
             int index;
             double min, max;
-            std::cout << ”Vilken sensor(0 -” << (sensorer.size() - 1) << ”) ? ”;
+            std::cout << "Vilken sensor(0 -" << (sensorer.size() - 1) << ") ? ";
             std::cin >> index;
             std::cout << "Undre och ovre grans: ";
             std::cin >> min >> max;
@@ -428,7 +428,7 @@ int main(void)
         {
             int index;
             char nyttNamn[50];
-            std::cout << ”Vilken sensor(0 -” << (sensorer.size() - 1) << ”) ? ”;
+            std::cout << "Vilken sensor(0 -" << (sensorer.size() - 1) << ") ? ";
             std::cin >> index;
             std::cout << "Nytt namn (utan mellanslag): ";
             std::cin >> std::setw(50) >> nyttNamn;
@@ -468,7 +468,7 @@ int main(void)
         case 31:
         {
             int index;
-            std::cout << ”Vilken sensor(0 -” << (sensorer.size() - 1) << ”) ? ”;
+            std::cout << "Vilken sensor(0 -" << (sensorer.size() - 1) << ") ? ";
             std::cin >> index;
             std::cout << "Namn: " << sensorer[index]->hamtaNamn() << "\n";
             std::cout << "Senaste varde: " << sensorer[index]->hamtaSenasteVarde() << "\n";
@@ -479,7 +479,7 @@ int main(void)
         case 32:
         {
             int index, nyttAntal;
-            std::cout << ”Vilken sensor(0 -” << (sensorer.size() - 1) << ”) ? ”;
+            std::cout << "Vilken sensor(0 -" << (sensorer.size() - 1) << ") ? ";
             std::cin >> index;
             if (index < 0 || index >= 3)
             {
@@ -503,7 +503,7 @@ int main(void)
         case 33:
         {
             int index;
-            std::cout << ”Vilken sensor(0 -” << (sensorer.size() - 1) << ”) ? ”;
+            std::cout << "Vilken sensor(0 -" << (sensorer.size() - 1) << ") ? ";
             std::cin >> index;
             if (sensorer[index]->arGiltig())
             {
