@@ -249,7 +249,7 @@ int main(void)
             std::cout << "Efter: a = " << a << ", b = " << b << "\n";
             break;
         }
-        case 13:
+        case 13://evighetsloopar när man anger bokstäver.
         {
             double varde;
             printf("Ange matvarde att lagga till: ");
@@ -385,18 +385,19 @@ int main(void)
             break;
         }
 
-        case 25:
+        case 25://kolla igenom koden. programmet avslutas efter att man valt case 25.
             for (size_t i = 0; i < sensorer.size(); i++)
             {
                 std::cout << i << ": ";
                 sensorer[i]->skrivUt();
             }
             break;
-        case 26:
+
+        case 26://Programmet krashar om man väljer utanför arrayen.
         {
             int index;
             double nyttVarde;
-            std::cout << "Vilken sensor(0 -" << (sensorer.size() - 1) << ") ? ";
+            std::cout << "Vilken sensor(0 - " << (sensorer.size() - 1) << ") ? ";
             std::cin >> index;
             std::cout << "Nytt varde: ";
             std::cin >> nyttVarde;
