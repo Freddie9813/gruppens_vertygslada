@@ -1,3 +1,4 @@
+#include <cassert>
 #include "sensorstatistik.h"
 
 double hamtaMedelvardeForTyp(std::vector<Sensor *> &sensorer,
@@ -6,7 +7,7 @@ double hamtaMedelvardeForTyp(std::vector<Sensor *> &sensorer,
     double summa = 0;
     int antal = 0;
 
-    for (size_t i = 1; i < sensorer.size(); i++)
+    for (size_t i = 0; i < sensorer.size(); i++)
     {
         if (sensorer[i]->hamtaTyp() == typ)
         {
@@ -15,5 +16,6 @@ double hamtaMedelvardeForTyp(std::vector<Sensor *> &sensorer,
         }
     }
 
+    assert(antal > 0 && "Ingen sensor av den efterfragade typen hittades");
     return summa / antal;
 }
