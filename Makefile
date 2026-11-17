@@ -1,6 +1,6 @@
 
 CXX = g++
-CXXFLAGS = -Wall -Wextra -Wpedantic -std=c++20
+CXXFLAGS = -Wall -Wextra -Wpedantic -std=c++20 -g
 
 KALLOR = main.cpp temperatur.cpp geometri.cpp multiplikation.cpp primtal.cpp \
 		fizzbuzz.cpp kalkylator.cpp \
@@ -16,7 +16,7 @@ KALLOR = main.cpp temperatur.cpp geometri.cpp multiplikation.cpp primtal.cpp \
 		rorelsesensor_larm.cpp fuktsensor_konstruktor.cpp fuktsensor_kritisk.cpp \
 		temperatursensor_typ.cpp temperatursensor_skrivut.cpp \
 		rorelsesensor_typ.cpp rorelsesensor_skrivut.cpp \
-		fuktsensor_typ.cpp fuktsensor_skrivut.cpp
+		fuktsensor_typ.cpp fuktsensor_skrivut.cpp sensorstatistik.cpp \
 
 OBJEKT = $(KALLOR:.cpp=.o)
 
