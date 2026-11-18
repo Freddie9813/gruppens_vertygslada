@@ -11,6 +11,7 @@
 #include <string>
 #include <algorithm>
 #include "sensorstatistik.h"
+#include <cassert>
 
 static void skriv_meny(void)
 
@@ -401,6 +402,7 @@ int main(void)
             double nyttVarde;
             std::cout << "Vilken sensor(0 - " << (sensorer.size() - 1) << ") ? ";
             std::cin >> index;
+            assert(index >= 0 && index < (int)sensorer.size());
             std::cout << "Nytt varde: ";
             std::cin >> nyttVarde;
             sensorer[index]->uppdateraVarde(nyttVarde);
