@@ -12,6 +12,7 @@
 #include <algorithm>
 #include "sensorstatistik.h"
 #include <cassert>
+#include "tester.h"
 
 static void skriv_meny(void)
 
@@ -64,6 +65,7 @@ static void skriv_meny(void)
     printf("45. Ta bort en anteckning\n");
     printf("46. Rensa alla anteckningar\n");
     printf("47. Berakna medelvarde for en sensortyp\n");
+    printf("48. Kor alla tester\n");
     printf("0. Avsluta\n");
     printf("Val: ");
 }
@@ -705,6 +707,21 @@ int main(void)
             std::cin.ignore();
             std::getline(std::cin, typ);
             std::cout << "Medelvarde: " << hamtaMedelvardeForTyp(sensorer, typ) << "\n";
+            break;
+        }
+        case 48:
+        {
+            testerKorda = 0;
+            testerLyckade = 0;
+            std::cout << "=== Kor alla tester ===\n";
+            testaSensorGrundlaggande();
+            testaSensorValidering();
+            testaTemperatursensor();
+            testaFuktsensor();
+            testaPrimtal();
+            testaKalkylator();
+            std::cout << "=== " << testerLyckade << "/" << testerKorda
+                      << " tester lyckades ===\n";
             break;
         }
         case 0:
