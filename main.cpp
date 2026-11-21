@@ -13,6 +13,9 @@
 #include "sensorstatistik.h"
 #include <cassert>
 #include "tester.h"
+#include <limits>
+#include "inmatning.h"
+
 
 static void skriv_meny(void)
 
@@ -95,13 +98,23 @@ int main(void)
         skriv_meny();
         std::cin >> val;
 
+        if (!kontrolleraInmatning())
+        {
+            val = -1;
+            continue;
+        }
+
         switch (val)
         {
         case 1:
         {
-            double celsius;
+            double celsius = 0.0;
             std::cout << "Ange temperatur i Celsius: ";
             std::cin >> celsius;
+            if (!kontrolleraInmatning())
+            {
+                break;
+            }
             std::cout << celsius << " C = "
                       << celsius_till_fahrenheit(celsius) << " F\n";
             break;
@@ -111,6 +124,10 @@ int main(void)
             double bredd, hojd;
             std::cout << "Ange bredd och hojd: ";
             std::cin >> bredd >> hojd;
+            if (!kontrolleraInmatning())
+            {
+                break;
+            }
             std::cout << "Arean ar " << rektangelarea(bredd, hojd) << "\n";
             break;
         }
@@ -119,6 +136,10 @@ int main(void)
             int tal;
             std::cout << "Ange ett tal: ";
             std::cin >> tal;
+            if (!kontrolleraInmatning())
+            {
+                break;
+            }
             skriv_multiplikationstabell(tal);
             break;
         }
@@ -127,6 +148,10 @@ int main(void)
             int tal;
             std::cout << "Ange ett heltal: ";
             std::cin >> tal;
+            if (!kontrolleraInmatning())
+            {
+                break;
+            }
             if (ar_primtal(tal))
             {
                 std::cout << tal << " ar ett primtal.\n";
@@ -142,6 +167,10 @@ int main(void)
             int fran, till;
             std::cout << "Ange start och slut (t.ex. 1 20): ";
             std::cin >> fran >> till;
+            if (!kontrolleraInmatning())
+            {
+                break;
+            }
             skriv_fizzbuzz(fran, till);
             break;
         }
@@ -152,6 +181,10 @@ int main(void)
 
             std::cout << "Ange uttryck, t.ex. \"4 + 2\": ";
             std::cin >> a >> operatortecken >> b;
+            if (!kontrolleraInmatning())
+            {
+                break;
+            }
 
             std::cout << "Resultat: " << berakna(a, b, operatortecken) << "\n";
 
@@ -163,12 +196,30 @@ int main(void)
             int antal;
             std::cout << "Hur manga matningar vill du mata in (max 20)? ";
             std::cin >> antal;
+            if (!kontrolleraInmatning())
+            {
+                break;
+            }
+            if (antal < 1 || antal > 20)
+            {
+                std::cout << "Antalet maste vara mellan 1 och 20.\n";
+                break;
+            }
+            bool fel = false;
             for (int i = 0; i < antal; i++)
             {
                 std::cout << "Matning " << (i + 1) << " (Celsius): ";
                 std::cin >> matningar[i];
+                if (!kontrolleraInmatning())
+                {
+                    fel = true;
+                    break;
+                }
             }
-
+            if (fel)
+            {
+                break;
+            }
             konvertera_serie(matningar, antal);
 
             std::cout << "I Fahrenheit: ";
@@ -188,12 +239,30 @@ int main(void)
 
             std::cout << "Hur manga rektanglar vill du jamfora (max 20)? ";
             std::cin >> antal;
+            if (!kontrolleraInmatning())
+            {
+                break;
+            }
+            if (antal < 1 || antal > 20)
+            {
+                std::cout << "Antalet maste vara mellan 1 och 20.\n";
+                break;
+            }
+            bool fel = false;
             for (int i = 0; i < antal; i++)
             {
                 std::cout << "Rektangel " << (i + 1) << ", bredd och hojd ";
                 std::cin >> bredder[i] >> hojder[i];
+                if (!kontrolleraInmatning())
+                {
+                    fel = true;
+                    break;
+                }
             }
-
+            if (fel)
+            {
+                break;
+            }
             storst_rektangel(bredder, hojder, antal, storsta_area, index);
 
             std::cout << "Storst area ar " << storsta_area
@@ -206,10 +275,29 @@ int main(void)
             int antal;
             std::cout << "Hur manga tabeller vill du skriva ut (max antal 20)? ";
             std::cin >> antal;
+            if (!kontrolleraInmatning())
+            {
+                break;
+            }
+            if (antal < 1 || antal > 20)
+            {
+                std::cout << "Antalet maste vara mellan 1 och 20.\n";
+                break;
+            }
+            bool fel = false;
             for (int i = 0; i < antal; i++)
             {
                 std::cout << "Tal " << (i + 1) << ": ";
                 std::cin >> tal[i];
+                if (!kontrolleraInmatning())
+                {
+                    fel = true;
+                    break;
+                }
+            }
+            if (fel)
+            {
+                break;
             }
             skriv_flera_tabeller(tal, antal);
             break;
@@ -220,10 +308,29 @@ int main(void)
             int antal;
             std::cout << "Hur manga tal vill du kontrollera (max antal 20)? ";
             std::cin >> antal;
+            if (!kontrolleraInmatning())
+            {
+                break;
+            }
+            if (antal < 1 || antal > 20)
+            {
+                std::cout << "Antalet maste vara mellan 1 och 20.\n";
+                break;
+            }
+            bool fel = false;
             for (int i = 0; i < antal; i++)
             {
                 std::cout << "tal " << (i + 1) << ": ";
                 std::cin >> tal[i];
+                if (!kontrolleraInmatning())
+                {
+                    fel = true;
+                    break;
+                }
+            }
+            if (fel)
+            {
+                break;
             }
             std::cout << "Antal primtal: "
                       << raknar_primtal_i_array(tal, antal) << "\n";
@@ -236,6 +343,10 @@ int main(void)
 
             std::cout << "Ange start och slut (t.ex. 1 20): ";
             std::cin >> fran >> till;
+            if (!kontrolleraInmatning())
+            {
+                break;
+            }
 
             fizzbuzz_sammanfattning(fran, till, sammanfattning);
             std::cout << sammanfattning << "\n";
@@ -246,6 +357,10 @@ int main(void)
             double a, b;
             std::cout << "Ange tva tal, t.ex. \"3 7\": ";
             std::cin >> a >> b;
+            if (!kontrolleraInmatning())
+            {
+                break;
+            }
 
             std::cout << "Fore: a = " << a << ", b = " << b << "\n";
 
@@ -259,6 +374,10 @@ int main(void)
             double varde;
             printf("Ange matvarde att lagga till: ");
             std::cin >> varde;
+            if (!kontrolleraInmatning())
+            {
+                break;
+            }
             matlogg.push_back(varde);
             printf("Matloggen innehaller nu %d matning(ar).\n", (int)matlogg.size());
             break;
@@ -329,6 +448,10 @@ int main(void)
             std::cin >> std::setw(50) >> namn;
             printf("Matvarde: ");
             std::cin >> varde;
+            if (!kontrolleraInmatning())
+            {
+                break;
+            }
             sensorregister = lagg_till_sensormatning(sensorregister,
                                                      &sensorregister_antal,
                                                      namn, varde);
@@ -404,9 +527,21 @@ int main(void)
             double nyttVarde;
             std::cout << "Vilken sensor(0 - " << (sensorer.size() - 1) << ") ? ";
             std::cin >> index;
-            assert(index >= 0 && index < (int)sensorer.size());
+            if (!kontrolleraInmatning())
+            {
+                break;
+            }
+            if (index < 0 || index >= (int)sensorer.size())
+            {
+                std::cout << "Ogiltigt sensorindex.\n";
+                break;
+            }
             std::cout << "Nytt varde: ";
             std::cin >> nyttVarde;
+            if (!kontrolleraInmatning())
+            {
+                break;
+            }
             sensorer[index]->uppdateraVarde(nyttVarde);
             sensorer[index]->skrivUt();
             break;
@@ -416,6 +551,15 @@ int main(void)
             int index;
             std::cout << "Vilken sensor(0 -" << (sensorer.size() - 1) << ") ? ";
             std::cin >> index;
+            if (!kontrolleraInmatning())
+            {
+                break;
+            }
+            if (index < 0 || index >= (int)sensorer.size())
+            {
+                std::cout << "Ogiltigt sensorindex.\n";
+                break;
+            }
             sensorer[index]->nollstallRakning();
             sensorer[index]->skrivUt();
             break;
@@ -427,8 +571,21 @@ int main(void)
             double min, max;
             std::cout << "Vilken sensor(0 -" << (sensorer.size() - 1) << ") ? ";
             std::cin >> index;
+            if (!kontrolleraInmatning())
+            {
+                break;
+            }
+            if (index < 0 || index >= (int)sensorer.size())
+            {
+                std::cout << "Ogiltigt sensorindex.\n";
+                break;
+            }
             std::cout << "Undre och ovre grans: ";
             std::cin >> min >> max;
+            if (!kontrolleraInmatning())
+            {
+                break;
+            }
             if (sensorer[index]->arInomGrans(min, max))
             {
                 std::cout << "Ja, senaste vardet ligger inom gransen.\n";
@@ -446,6 +603,15 @@ int main(void)
             char nyttNamn[50];
             std::cout << "Vilken sensor(0 -" << (sensorer.size() - 1) << ") ? ";
             std::cin >> index;
+            if (!kontrolleraInmatning())
+            {
+                break;
+            }
+            if (index < 0 || index >= (int)sensorer.size())
+            {
+                std::cout << "Ogiltigt sensorindex.\n";
+                break;
+            }
             std::cout << "Nytt namn (utan mellanslag): ";
             std::cin >> std::setw(50) >> nyttNamn;
             if (sensorer[index]->bytNamn(nyttNamn))
@@ -465,7 +631,17 @@ int main(void)
 
             std::cout << "Jamfor sensor (0-" << (sensorer.size() - 1) << ") och sensor (0-" << (sensorer.size() - 1) << "): ";
             std::cin >> index1 >> index2;
-
+            if (!kontrolleraInmatning())
+            {
+                break;
+            }
+            if (index1 < 0 || index2 < 0 ||
+            index1 >= (int)sensorer.size() ||
+            index2 >= (int)sensorer.size())
+            {
+                std::cout << "Ogiltigt sensorindex.\n";
+                break;
+            }
             if (sensorer[index1]->harHogreVarde(*sensorer[index2]))
             {
                 std::cout << "Sensor " << index1
@@ -486,6 +662,15 @@ int main(void)
             int index;
             std::cout << "Vilken sensor(0 -" << (sensorer.size() - 1) << ") ? ";
             std::cin >> index;
+            if (!kontrolleraInmatning())
+            {
+                break;
+            }
+            if (index < 0 || index >= (int)sensorer.size())
+            {
+                std::cout << "Ogiltigt sensorindex.\n";
+                break;
+            }
             std::cout << "Namn: " << sensorer[index]->hamtaNamn() << "\n";
             std::cout << "Senaste varde: " << sensorer[index]->hamtaSenasteVarde() << "\n";
             std::cout << "Antal matningar: " << sensorer[index]->hamtaAntalMatningar() << "\n";
@@ -497,13 +682,21 @@ int main(void)
             int index, nyttAntal;
             std::cout << "Vilken sensor(0 -" << (sensorer.size() - 1) << ") ? ";
             std::cin >> index;
-            if (index < 0 || index >= 3)
+            if (!kontrolleraInmatning())
             {
-                std::cout << "Ogiltig sensor! Valj mellan 0-2.\n";
+                break;
+            }
+            if (index < 0 || index >= (int)sensorer.size())
+            {
+                std::cout << "Ogiltigt sensorindex.\n";
                 break;
             }
             std::cout << "Nytt antal matningar: ";
             std::cin >> nyttAntal;
+            if (!kontrolleraInmatning())
+            {
+                break;
+            }
             if (sensorer[index]->sattAntalMatningar(nyttAntal))
             {
                 std::cout << "Antal matningar uppdaterat.\n";
@@ -521,6 +714,15 @@ int main(void)
             int index;
             std::cout << "Vilken sensor(0 -" << (sensorer.size() - 1) << ") ? ";
             std::cin >> index;
+            if (!kontrolleraInmatning())
+            {
+                break;
+            }
+            if (index < 0 || index >= (int)sensorer.size())
+            {
+                std::cout << "Ogiltigt sensorindex.\n";
+                break;
+            }
             if (sensorer[index]->arGiltig())
             {
                 std::cout << "Sensorn ar giltig.\n";
@@ -585,6 +787,10 @@ int main(void)
 
             std::cout << "Vilken typ (1=Temperatur, 2=Rorelse, 3=Fukt)? ";
             std::cin >> typ;
+            if (!kontrolleraInmatning())
+            {
+                break;
+            }
             std::cout << "Namn (utan mellanslag): ";
             std::cin >> namn;
 
@@ -592,6 +798,10 @@ int main(void)
             {
                 std::cout << "Startvarde: ";
                 std::cin >> startvarde;
+                if (!kontrolleraInmatning())
+                {
+                    break;
+                }
                 sensorer.push_back(new TemperatureSensor(namn.c_str(), startvarde, "Celsius"));
             }
             else if (typ == 2)
@@ -603,6 +813,10 @@ int main(void)
                 double kritisk;
                 std::cout << "Startvarde och kritisk grans: ";
                 std::cin >> startvarde >> kritisk;
+                if (!kontrolleraInmatning())
+                {
+                    break;
+                }
                 sensorer.push_back(new HumiditySensor(namn.c_str(), startvarde, kritisk));
             }
             else
@@ -681,6 +895,15 @@ int main(void)
             std::cout << "Vilket index vill du ta bort (0-"
                       << (anteckningar.size() - 1) << ")? ";
             std::cin >> index;
+            if (!kontrolleraInmatning())
+            {
+                break;
+            }
+            if (index < 0 || index >= (int)anteckningar.size())
+            {
+                std::cout << "Ogiltigt index.\n";
+                break;
+            }
             anteckningar.erase(anteckningar.begin() + index);
             std::cout << "Borttagen. Antal kvar: " << anteckningar.size() 
                       << "\n";
@@ -693,6 +916,10 @@ int main(void)
             std::cout << "Rensa alla (1 = ja, 0 = nej)? ";
             int svar;
             std::cin >> svar;
+            if (!kontrolleraInmatning())
+            {
+                break;
+            }
             if (svar == 1)
             {
                 anteckningar.clear();

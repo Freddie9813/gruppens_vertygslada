@@ -2,7 +2,7 @@
 CXX = g++
 CXXFLAGS = -Wall -Wextra -Wpedantic -std=c++20 -g
 
-KALLOR = main.cpp temperatur.cpp geometri.cpp multiplikation.cpp primtal.cpp \
+KALLOR = main.cpp inmatning.cpp temperatur.cpp geometri.cpp multiplikation.cpp primtal.cpp \
 		fizzbuzz.cpp kalkylator.cpp \
 		sensor_lagg_till.cpp sensor_skriv.cpp \
 		sensor_medelvarde.cpp sensor_hitta.cpp sensor_spara.cpp sensor_lasa.cpp\
